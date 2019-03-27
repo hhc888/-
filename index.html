@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				width: 590px;
+				border: 1px solid red;
+				margin: 100px auto;
+				
+			}
+			textarea{
+				height: 70px;
+				width: 580px;
+				margin: 5px;
+				resize: none;
+			}
+			#but{
+				width: 80px;
+				height: 20px;
+				margin-left: 500px;
+			}
+			#box ul li a{
+				float: right;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<textarea name="" rows="" cols="" id="current"></textarea>
+			<button id="but">发布</button>
+			<!--<ul>
+				<li>12<a href="javascript:;">shangchu</a></li>
+				<li>12<a href="javascript:;">shangchu</a></li>
+				<li>12<a href="javascript:;">shangchu</a></li>
+				<li>12<a href="javascript:;">shangchu</a></li>
+				<li>12</li>
+				<li>12</li>
+			</ul>-->
+		</div>
+	</body>
+	<script>
+		var box=document.getElementById("box");
+		var but=document.getElementById("but");
+		var textarea=document.getElementById("current");
+		var ul=document.createElement("ul");
+		box.appendChild(ul);
+		but.onclick=function(){
+//			console.log(current);
+			var current=textarea.value;
+			if(current==""){
+				alert("不能为空")
+				return
+			}
+			var li=document.createElement("li");
+			li.innerHTML=current+"<a href=javascript:;>删除</a>";
+			var lis=ul.children;
+			if(lis<0){
+				ul.appendChild(li);
+			}else{
+				ul.insertBefore(li,ul.firstChild)
+			}
+			
+			textarea.value="";
+			var as=document.getElementsByTagName("a");
+			for (var i=0;i<as.length;i++) {
+				as[i].onclick=function(){
+					ul.removeChild(this.parentNode);
+				}
+			}
+		}
+	</script>
+</html>
